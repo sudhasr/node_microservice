@@ -57,11 +57,7 @@ router.post('/generate',function (req,res) {        //Microservice to POST the p
                     ,{headers:true})
                     .pipe(ws);
 
-
-
-                setTimeout(function () {
                     myDB.collection('validRequests').update({'uuid':uuid},{$set:{'status':status.get(2).key,'filename':'reportsData.csv','filepath':'/'}});      // Changing status field as done after writing payload to csv file
-                },2000);
 
             });
             res.setHeader('x-process-id',uuid);
