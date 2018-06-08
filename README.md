@@ -1,24 +1,3 @@
-Please create a small node.js microservice which implements the following. Once you create one, you can choose to deploy this in IBM cloud or AWS. Please send us the link and instructions to invoke these following APIs and your code for the same. You can use any starter kit available  and repurpose it.
-·         Create POST /report/generate enpoint with a payload as below. Upon invoking the endpoint, it should return 202 Accepted http code and return a response header[x-process-id] with unique uuid to track this request.
-o    Endpoint - POST /report/generate                              
-o    Payload = ["11", "22", "33" ] //String Array 
-o    User can send only 100 strings per request. 
-o    Validations:
-§  send 413 if it payload has > 100 strings
-§  send 412 if there array size is 0
-§  send 400 if the payload is missing
-§  send 202 if the request is valid. create an entry in mongo collection with status as processing and send back a response header[x-process-id] with unique uuid.
-o    For a valid request, push the payload values into csv file and update the { uuid, status,  file_name, path } in a mongo collection.(create simple mongo data model and use the same to persist data)
-o    Status should be an enum ["processing", "done"]
-o    Once file is created successfull0y change the status to done
-·         Create GET /report/{uuid} -- This endpoint used to return/download excel file
-o    Endpoint - GET /report/{uuid}
-o    Validations:
-§  send 400 if uuid is missing in request param
-§  send 204 if there is a record in db for uuid but status is processing
-§  send 200 if the staus is done and try to return the generated csv(optional) if not just return whats in the db { uuid, status,  file_name, path } as responae body
-#################################################################################
-
 INSTRUCTIONS TO INVOKE APIs
 
 Microservices Endpoint URLs:-
